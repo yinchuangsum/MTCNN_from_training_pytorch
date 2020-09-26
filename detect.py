@@ -228,6 +228,7 @@ class Detector():
 
 if __name__ == '__main__':
     image_path = r"test_images"
+    output_path = r"output"
     for i in os.listdir(image_path):
         detector = Detector()
         with Image.open(os.path.join(image_path,i)) as im:
@@ -265,8 +266,7 @@ if __name__ == '__main__':
                 imDraw.ellipse((utils.draw_circle(lm_x, lm_y)), fill='green')
                 imDraw.ellipse((utils.draw_circle(rm_x, rm_y)), fill='green')
 
-
-            im.save("data.jpg")
+            im.save(os.path.join(output_path,i))
 
 
 
