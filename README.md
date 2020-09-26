@@ -1,11 +1,11 @@
 # MTCNN_from_training_pytorch
+
 MTCNN is a Convolution Neural Network used in face detection.\
-It is based on the paper Zhang, K et al. (2016) [MTCNN Paper](https://arxiv.org/abs/1604.02878)\
+It is based on the paper [Zhang, K et al. (2016)](https://arxiv.org/abs/1604.02878)\
 ![alt text](https://i.ibb.co/WcZ7Rvc/test-img.jpg) ![alt text](https://i.ibb.co/6P225L3/test-img.jpg)
 ---
 ## Training
-train MTCNN model using CelebA dataset\
-[Link to Dataset Download](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)
+train MTCNN model using [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) dataset
 1. Use generate_data.py to generate & resize data into suitable image size for training. (modify the file save path)
 2. Run train_pnet.py, train_rnet.py and train_onet.py to train the 3 network.
 ---
