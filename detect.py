@@ -19,7 +19,7 @@ p_nms = 0.5
 r_cls = 0.6
 r_nms = 0.5
 # Onet：
-o_cls = 0.99
+o_cls = 0.95
 o_nms = 0.5
 
 
@@ -39,9 +39,9 @@ class Detector():
             self.rnet.cuda()
             self.onet.cuda()
 
-        self.pnet.load_state_dict(torch.load(pnet_param, map_location=torch.device("cpu")))
-        self.rnet.load_state_dict(torch.load(rnet_param, map_location=torch.device("cpu")))
-        self.onet.load_state_dict(torch.load(onet_param, map_location=torch.device("cpu")))
+        self.pnet.load_state_dict(torch.load(pnet_param, map_location= "cpu" ))
+        self.rnet.load_state_dict(torch.load(rnet_param, map_location= "cpu" ))
+        self.onet.load_state_dict(torch.load(onet_param, map_location= "cpu" ))
 
         self.__image_transform = transforms.Compose([transforms.ToTensor()]) #NCHW and normalized
 
@@ -94,7 +94,7 @@ class Detector():
             cls = _cls[0][0].cpu().data
             offset = _offest[0].cpu().data
             idxs = torch.gt(cls, p_cls) # compare with confidence threshold
-            idx = torch.nonzero(idxs)
+            idx = torch.nonzero(idxs,as_tuple=False)
             boxes = self.__box(idx, offset[:, idxs], cls[idxs], scale)
 
             boxes = utils.nms(np.array(boxes), p_nms) #perform iou
