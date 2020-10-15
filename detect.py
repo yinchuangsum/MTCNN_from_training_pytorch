@@ -225,6 +225,10 @@ class Detector():
 
         return utils.nms(np.array(boxes), o_nms, isMin=True) #iou is divided by smallest area no union
 
+def rotate(image):
+    w,h = image.size
+    if w > h :
+        return image.rotate(-90,expand = True)
 
 if __name__ == '__main__':
     image_path = r"test_images"
@@ -235,6 +239,7 @@ if __name__ == '__main__':
             print(i)
             print("----------------------------")
             im.load()
+            im = rotate(im)
             boxes = detector.detect(im)
             boxes = utils.convert_to_square(boxes)
             print("size:",im.size)
